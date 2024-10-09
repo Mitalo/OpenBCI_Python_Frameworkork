@@ -6,7 +6,7 @@
         "type": "OpenBCIBoard",
         "enable_log": false,
         "log_level": "TRACE",
-        "board": "CYTON_BOARD",
+        "board": "SYNTHETIC_BOARD",
         "communication": {
           "serial_port": "COM3"
         },
