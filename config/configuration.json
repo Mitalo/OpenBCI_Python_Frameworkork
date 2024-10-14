@@ -45,7 +45,7 @@
         "shuffle_when_sequence_is_finished": false,
         "trials": [
           {
-            "name": "Descanso",
+            "name": "DESCANSO",
             "code": 1000,
             "duration": {
               "mean": 5,
@@ -59,7 +59,7 @@
             }
           },
           {
-            "name": "Mindinho",
+            "name": "LETRA A",
             "code": 2000,
             "duration": {
               "mean": 5,
@@ -68,7 +68,7 @@
             "cue": {
               "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
               "parameters": {
-                "message": "MINDINHO"
+                "message": "A"
               }
             }
           },
@@ -87,7 +87,7 @@
             }
           },
           {
-            "name": "INDICADOR",
+            "name": "LETRA E",
             "code": 3000,
             "duration": {
               "mean": 5,
@@ -96,7 +96,91 @@
             "cue": {
               "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
               "parameters": {
-                "message": "INDICADOR"
+                "message": "E"
+              }
+            }
+          },
+          {
+            "name": "DESCANSO",
+            "code": 1000,
+            "duration": {
+              "mean": 5,
+              "standard_deviation": 0
+            },
+            "cue": {
+              "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
+              "parameters": {
+                "message": "DESCANSO"
+              }
+            }
+          },
+          {
+            "name": "LETRA I",
+            "code": 4000,
+            "duration": {
+              "mean": 5,
+              "standard_deviation": 0
+            },
+            "cue": {
+              "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
+              "parameters": {
+                "message": "I"
+              }
+            }
+          },
+          {
+            "name": "DESCANSO",
+            "code": 1000,
+            "duration": {
+              "mean": 5,
+              "standard_deviation": 0
+            },
+            "cue": {
+              "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
+              "parameters": {
+                "message": "DESCANSO"
+              }
+            }
+          },
+          {
+            "name": "LETRA O",
+            "code": 3000,
+            "duration": {
+              "mean": 5,
+              "standard_deviation": 0
+            },
+            "cue": {
+              "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
+              "parameters": {
+                "message": "O"
+              }
+            }
+          },
+          {
+            "name": "DESCANSO",
+            "code": 1000,
+            "duration": {
+              "mean": 5,
+              "standard_deviation": 0
+            },
+            "cue": {
+              "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
+              "parameters": {
+                "message": "DESCANSO"
+              }
+            }
+          },
+          {
+            "name": "LETRA U",
+            "code": 3000,
+            "duration": {
+              "mean": 5,
+              "standard_deviation": 0
+            },
+            "cue": {
+              "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
+              "parameters": {
+                "message": "U"
               }
             }
           }
