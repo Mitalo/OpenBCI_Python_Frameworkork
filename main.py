@@ -1,51 +1,32 @@
 import json
 import signal
-from threading import Thread
-from flask import Flask, request
+import threading
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter, Namespace
+
 from application import Application
 
-app = Flask(__name__)
-
-application = None
-interface_thread = None
-
-signal.signal(signal.SIGINT, lambda x, y: stop())
-signal.signal(signal.SIGTERM, lambda x, y: stop())
 
 
-def run_app(configuration):
-    global application
-    application = Application(configuration)
+def get_execution_arguments() -> Namespace:
+    parser = ArgumentParser(
+        prog='main.py',
+        description='Starts the application',
+        formatter_class=ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument(
+        '--config',
+        help='Path to the configuration file',
+        type=str,
+        default='config/configuration.json'
+    )
+    return parser.parse_args()
 
 
-@app.route('/start', methods=['POST'])
-def start():
-    global application
-    global interface_thread
-    if application is not None:
-        return 'Application already running'
-    config = request.get_json()
-    interface_thread = Thread(target=run_app, args=(config,), daemon=True)
-    interface_thread.start()
-    return 'Application running'
+def get_config_path(args: Namespace) -> str:
+    return args.config
 
-
-@app.route('/stop', methods=['GET'])
-def stop():
-    global application
-    global interface_thread
-    if application is None:
-        return 'No application running'
-
-    application.dispose()
-    interface_thread.join()
-    return 'Application stopped'
-
-# if __name__ == '__main__':
-#     app.run(debug=True, host='127.0.0.1', port=8001)
-
-if __name__ == '__main__':
-    configuration_file = open('config/configuration.json', 'r')
+def get_config_data(config_path:str):
+    configuration_file = open(config_path, 'r')
     config_data = json.load(configuration_file)
     configuration_file.close()
     Application(config_data)
