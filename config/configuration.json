@@ -6,7 +6,7 @@
         "type": "OpenBCIBoard",
         "enable_log": false,
         "log_level": "TRACE",
-        "board": "SYNTHETIC_BOARD",
+        "board": "CYTON_BOARD",
         "communication": {
           "serial_port": "COM3"
         },
@@ -144,7 +144,7 @@
           },
           {
             "name": "LETRA O",
-            "code": 3000,
+            "code": 5000,
             "duration": {
               "mean": 5,
               "standard_deviation": 0
@@ -172,7 +172,7 @@
           },
           {
             "name": "LETRA U",
-            "code": 3000,
+            "code": 6000,
             "duration": {
               "mean": 5,
               "standard_deviation": 0
