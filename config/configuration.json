@@ -15,8 +15,7 @@
           "clear_output_buffer_on_generate": true
         },
         "outputs": {
-          "eeg": [],
-          "accelerometer": [
+          "eeg": [
             {
             "node": "merge",
             "input": "master_main"
@@ -24,8 +23,8 @@
           {
             "node": "out_board",
             "input": "main"
-          }
-        ],
+          }],
+          "accelerometer": [],
           "timestamp": [
             {
               "node": "merge",
