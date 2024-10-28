@@ -51,9 +51,11 @@
               "standard_deviation": 0
             },
             "cue": {
-              "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
+              "file": "cues\\print_and_beep.py",
               "parameters": {
-                "message": "DESCANSO"
+                "message": "DESCANSO",
+                "frequency": 220,
+                "duration": 4800
               }
             }
           },
@@ -65,9 +67,11 @@
               "standard_deviation": 0
             },
             "cue": {
-              "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
+              "file": "cues\\print_and_beep.py",
               "parameters": {
-                "message": "A"
+                "message": "A",
+                "frequency": 220,
+                "duration": 4800
               }
             }
           },
@@ -79,9 +83,11 @@
               "standard_deviation": 0
             },
             "cue": {
-              "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
+              "file": "cues\\print_and_beep.py",
               "parameters": {
-                "message": "DESCANSO"
+                "message": "DESCANSO",
+                "frequency": 220,
+                "duration": 4800
               }
             }
           },
@@ -93,9 +99,11 @@
               "standard_deviation": 0
             },
             "cue": {
-              "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
+              "file": "cues\\print_and_beep.py",
               "parameters": {
-                "message": "E"
+                "message": "E",
+                "frequency": 220,
+                "duration": 4800
               }
             }
           },
@@ -107,9 +115,11 @@
               "standard_deviation": 0
             },
             "cue": {
-              "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
+              "file": "cues\\print_and_beep.py",
               "parameters": {
-                "message": "DESCANSO"
+                "message": "DESCANSO",
+                "frequency": 220,
+                "duration": 4800
               }
             }
           },
@@ -121,9 +131,11 @@
               "standard_deviation": 0
             },
             "cue": {
-              "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
+              "file": "cues\\print_and_beep.py",
               "parameters": {
-                "message": "I"
+                "message": "I",
+                "frequency": 220,
+                "duration": 4800
               }
             }
           },
@@ -135,9 +147,11 @@
               "standard_deviation": 0
             },
             "cue": {
-              "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
+              "file": "cues\\print_and_beep.py",
               "parameters": {
-                "message": "DESCANSO"
+                "message": "DESCANSO",
+                "frequency": 220,
+                "duration": 4800
               }
             }
           },
@@ -149,9 +163,11 @@
               "standard_deviation": 0
             },
             "cue": {
-              "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
+              "file": "cues\\print_and_beep.py",
               "parameters": {
-                "message": "O"
+                "message": "O",
+                "frequency": 220,
+                "duration": 4800
               }
             }
           },
@@ -163,9 +179,11 @@
               "standard_deviation": 0
             },
             "cue": {
-              "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
+              "file": "cues\\print_and_beep.py",
               "parameters": {
-                "message": "DESCANSO"
+                "message": "DESCANSO",
+                "frequency": 220,
+                "duration": 4800
               }
             }
           },
@@ -177,9 +195,11 @@
               "standard_deviation": 0
             },
             "cue": {
-              "file": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\console_print.py",
+              "file": "cues\\print_and_beep.py",
               "parameters": {
-                "message": "U"
+                "message": "U",
+                "frequency": 220,
+                "duration": 4800
               }
             }
           }
@@ -295,7 +315,7 @@
         "module": "models.node.output.file",
         "enable_log": false,
         "type": "CSVFile",
-        "file_path": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\out_final.csv",
+        "file_path": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\coleta5_italo.csv",
         "buffer_options": {
           "print_buffer_size":true,
           "clear_output_buffer_on_data_input": true,
@@ -307,19 +327,3 @@
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
