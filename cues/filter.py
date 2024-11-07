@@ -43,11 +43,11 @@ high_cutoff = 20
 order = 5
 
 df['Fp1_highpass'] = apply_highpass_filter(df['Fp1'], high_cutoff, fs, order)
-df['Fp1_lowpass'] = apply_lowpass_filter(df['Fp1_highpass'], low_cutoff, fs, order)
+df['Fp1_lowpass'] = apply_lowpass_filter(df['Fp1'], low_cutoff, fs, order)
 df['Fp1_filtered'] = apply_notch_filter(df['Fp1_lowpass'], fs)
 
 df['C3_highpass'] = apply_highpass_filter(df['C3'], high_cutoff, fs, order)
-df['C3_lowpass'] = apply_lowpass_filter(df['C3_highpass'], low_cutoff, fs, order)
+df['C3_lowpass'] = apply_lowpass_filter(df['C3'], low_cutoff, fs, order)
 df['C3_filtered'] = apply_notch_filter(df['C3_lowpass'], fs)
 
 df['marker_normalizado'] = (df['marker'] - df['marker'].min()) / (df['marker'].max() - df['marker'].min())
@@ -76,7 +76,7 @@ def plot(df, arg1, arg2):
     plt.tight_layout()
     plt.show()
     
-plot(df, 'Fp1_filtered', 'C3_filtered')
+plot(df, 'Fp1', 'C3')
 
 # signal_fp1 = df['Fp1_filtered'].values
 # signal_c3 = df['C3_filtered'].values

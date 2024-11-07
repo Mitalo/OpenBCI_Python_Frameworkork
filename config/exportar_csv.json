@@ -1,0 +1,67 @@
+{
+    "nodes": {
+      "root": {
+        "coletas_emg": {
+          "module": "models.node.generator.file",
+          "type": "CSVFile",
+          "enable_log": true,
+          "buffer_options": {
+            "clear_output_buffer_on_generate": true,
+            "print_buffer_size": false
+          },
+          "file_path": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\A_angelo_converted.csv",
+          "data_type": "float",
+          "sampling_frequency": 250,
+          "channel_column_names": [
+            "Fp1",
+            "C3"
+          ],
+          "outputs": {
+            "main": [
+              {
+                "node": "highpass",
+                "input": "main"
+              }
+            ],
+            "timestamp": []
+          }
+        }
+      },
+      "common": {
+        "highpass": {
+          "module": "models.node.processing.filter",
+          "type": "HighPass",
+          "enable_log": true,
+          "buffer_options": {
+            "clear_output_buffer_on_data_input": true,
+            "clear_input_buffer_after_process": true,
+            "clear_output_buffer_after_process": true,
+            "print_buffer_size": false
+          },
+          "low_cut_frequency_hz": 20.0,
+          "order": 5,
+          "outputs": {
+            "main": [
+              {
+                "node": "csv_out",
+                "input": "main"
+              }
+            ]
+          }
+        },
+        "csv_out": {
+          "module": "models.node.output.file",
+          "type": "CSVFile",
+          "enable_log": true,
+          "file_path": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\processadas\\A_angelo.csv",
+          "buffer_options": {
+            "clear_output_buffer_on_data_input": false,
+            "print_buffer_size": false,
+            "clear_input_buffer_after_process": true,
+            "clear_output_buffer_after_process": true
+          },
+          "outputs": {}
+        }
+      }
+    }
+  }

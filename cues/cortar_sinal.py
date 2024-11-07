@@ -1,8 +1,11 @@
 import pandas as pd
+import argparse
 
-# Carregar o dataset
-file_path = './out_final_italo2.csv'  # Substitua pelo caminho correto do seu arquivo
-data = pd.read_csv(file_path)
+parser = argparse.ArgumentParser(description="Script para plotar o sinal do openBCI")
+parser.add_argument('arquivo', type=str, help='Nome do arquivo a ser lido')
+args = parser.parse_args()
+
+data = pd.read_csv(args.arquivo)
 
 # Encontrar o índice da primeira alteração no 'marker'
 first_change_index = data['marker'].ne(data['marker'].iloc[0]).idxmax()
@@ -14,4 +17,4 @@ data_cortada = data.iloc[first_change_index:]
 print(data_cortada.head())
 
 # Se quiser salvar o novo dataset cortado:
-data_cortada.to_csv('out_final_italo2_cut.csv', index=False)
+data_cortada.to_csv(args.arquivo, index=False)

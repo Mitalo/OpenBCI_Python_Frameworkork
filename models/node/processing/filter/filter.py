@@ -71,7 +71,9 @@ class Filter(ProcessingNode):
         """
         filtered_data: Dict[str, FrameworkData] = {}
         for key in data:
-            filtered_data[key] = FrameworkData(sampling_frequency_hz=data[key].sampling_frequency)
+            filtered_data[key] = FrameworkData(
+                sampling_frequency_hz=data[key].sampling_frequency
+            )
             b, a = self._get_filter_coefficients(self.parameters, data[key].sampling_frequency)
             for channel in data[key].channels:
                 raw_signal = data[key].get_data_on_channel(channel)
