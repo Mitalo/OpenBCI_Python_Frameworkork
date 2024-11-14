@@ -60,8 +60,8 @@
             }
           },
           {
-            "name": "LETRA A",
-            "code": 2000,
+            "name": "LETRA U",
+            "code": 6000,
             "duration": {
               "mean": 5,
               "standard_deviation": 0
@@ -69,7 +69,7 @@
             "cue": {
               "file": "cues\\print_and_beep.py",
               "parameters": {
-                "message": "A",
+                "message": "U",
                 "frequency": 530,
                 "duration": 4800
               }
@@ -187,7 +187,7 @@
         "module": "models.node.output.file",
         "enable_log": false,
         "type": "CSVFile",
-        "file_path": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\A2_stefanye.csv",
+        "file_path": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\U_antonio.csv",
         "buffer_options": {
           "print_buffer_size":true,
           "clear_output_buffer_on_data_input": true,

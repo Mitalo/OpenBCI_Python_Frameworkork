@@ -77,6 +77,7 @@ class Filter(ProcessingNode):
             b, a = self._get_filter_coefficients(self.parameters, data[key].sampling_frequency)
             for channel in data[key].channels:
                 raw_signal = data[key].get_data_on_channel(channel)
+                raw_signal = [float(x) for x in raw_signal]
                 filtered_signal = lfilter(b, a, raw_signal)
                 filtered_data[key].input_data_on_channel(filtered_signal, channel)
 

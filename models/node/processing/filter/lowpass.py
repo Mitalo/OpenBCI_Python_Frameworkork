@@ -1,6 +1,7 @@
 import abc
 from typing import Final, Tuple
 from scipy.signal import butter
+from models.framework_data import FrameworkData
 
 from models.exception.invalid_parameter_value import InvalidParameterValue
 from models.exception.missing_parameter import MissingParameterError
@@ -9,8 +10,8 @@ from models.node.processing.filter.filter import Filter
 
 class LowPass(Filter):
     """ This is a lowpass filter. It's a node that filters the input data with a lowpass filter. A lowpass filter
-    is a filter that passes frequencies below a certain cutoff value and rejects (attenuates) frequencies above that range.\n
-    This class does that by creating a Butterworth scipy filter with the given parameters and btype='Low'. The filtering 
+    is a filter that passes frequencies above a certain cutoff value and rejects (attenuates) frequencies below that range.\n
+    This class does that by creating a Butterworth scipy filter with the given parameters and btype='low'. The filtering 
     itself is done by the parent class Filter in the _process method.
 
     Attributes:
@@ -18,8 +19,8 @@ class LowPass(Filter):
     
     configuration.json usage:
         **module** (*str*): The name of the module (``node.processing.filter``)\n
-        **type** (*str*): The type of the node (``LowPass``)\n
-        **high_cut_frequency_hz** (*float*): The high cut frequency in Hz.\n
+        **type** (*str*): The type of the node (``lowPass``)\n
+        **high_cut_frequency_hz** (*float*): The low cut frequency in Hz.\n
 
         **buffer_options** (*dict*): Buffer options.\n
             **clear_output_buffer_on_data_input** (*bool*): Whether to clear the output buffer when new data is inserted in the input buffer.\n
@@ -77,6 +78,7 @@ class LowPass(Filter):
         :return: a scipy Butterworth filter with the given parameters and btype='low'.
         :rtype: Tuple[list, list]
         """
+        
         return butter(
             parameters['order'],
             parameters['high_cut_frequency_hz'],
