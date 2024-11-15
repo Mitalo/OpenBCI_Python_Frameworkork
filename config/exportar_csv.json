@@ -24,7 +24,12 @@
                 "input": "main"
               }
             ],
-            "timestamp": []
+            "timestamp": [
+              {
+                "node": "merge",
+                "input": "slave_timestamp"
+              }
+            ]
           }
         }
       },
@@ -65,11 +70,32 @@
           "outputs": {
             "main": [
               {
-                "node": "csv_out",
-                "input": "main"
+                "node": "merge",
+                "input": "slave_main"
               }
             ]
           }
+        },
+        "merge": {
+            "module": "models.node.processing",
+            "type": "Merge",
+            "enable_log": true,
+            "slave_filling": "sample_and_hold",
+            "buffer_options": {
+                "clear_output_buffer_on_data_input": true,
+                "clear_input_buffer_after_process": true,
+                "clear_output_buffer_after_process": true,
+                "print_buffer_size": false
+            },
+            "outputs": {
+                "merged_main": [
+                    {
+                        "node": "csv_out",
+                        "input": "main"
+                    }
+                ],
+                "merged_timestamp": []
+            }
         },
         "csv_out": {
           "module": "models.node.output.file",
@@ -78,9 +104,9 @@
           "file_path": "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\processadas\\A_antonio.csv",
           "buffer_options": {
             "clear_output_buffer_on_data_input": false,
-            "print_buffer_size": false,
             "clear_input_buffer_after_process": true,
-            "clear_output_buffer_after_process": true
+            "clear_output_buffer_after_process": true,
+            "print_buffer_size": false
           },
           "outputs": {}
         }
