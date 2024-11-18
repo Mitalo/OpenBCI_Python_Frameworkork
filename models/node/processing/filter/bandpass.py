@@ -21,6 +21,7 @@ class BandPass(Filter):
         **type** (*str*): The type of the node (``BandPass``)\n
         **low_cut_frequency_hz** (*float*): The low cut frequency in Hz.\n
         **high_cut_frequency_hz** (*float*): The high cut frequency in Hz.\n
+        **order** (*int*): The order of the filter.\n
 
         **buffer_options** (*dict*): Buffer options.\n
             **clear_output_buffer_on_data_input** (*bool*): Whether to clear the output buffer when new data is inserted in the input buffer.\n

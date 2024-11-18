@@ -197,13 +197,13 @@ class SKLearnCompatibleTrainableNode(TrainableProcessingNode):
         :return: The trained processor.
         :rtype: Any
         """
-        data_shape = data.shape
-        if len(data_shape) > 2:
-            # Reshape array into a 2D array for fit function
-            nsamples = data_shape[0]
-            nx = data_shape[1]
-            ny = data_shape[2]
-            data = data.reshape((nsamples, nx*ny))
+        # data_shape = data.shape
+        # if len(data_shape) > 2:
+        #     # Reshape array into a 2D array for fit function
+        #     windows = data_shape[0]
+        #     channels = data_shape[1]
+        #     window_size = data_shape[2]
+        #     data = data.reshape((windows, channels*window_size))
         return self.sklearn_processor.fit(data, label)
 
     def _train(self, data: FrameworkData, label: FrameworkData):

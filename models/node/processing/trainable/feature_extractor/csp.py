@@ -75,7 +75,7 @@ class CSP(SKLearnFeatureExtractor):
         :return: The initialized sklearn CSP processor.
         :rtype: (TransformerMixin, BaseEstimator)
         """
-        return mne.decoding.CSP(n_components=self.number_of_components)
+        return mne.decoding.CSP(n_components=self.number_of_components, reg='ledoit_wolf')
 
     @abc.abstractmethod
     def _should_retrain(self) -> bool:
@@ -113,3 +113,11 @@ class CSP(SKLearnFeatureExtractor):
                                        channels=[f'source_{i}' for i in range(1, self.number_of_components+1)])
         formatted_data.input_2d_data(processed_data)
         return formatted_data
+    
+    def _inner_process_data(self, data: Any) -> Any:
+        extracted_data = np.dot(data, np.moveaxis(self.sklearn_processor.filters_[0:self.number_of_components], 1, 0)) ** 2
+        processed_data = np.log(extracted_data[:, 0:extracted_data.shape[1]])
+        processed_data = np.asarray(processed_data, dtype=np.float32)
+        return processed_data
+    
+

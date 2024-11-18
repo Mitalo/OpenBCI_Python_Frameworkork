@@ -5,6 +5,8 @@ from models.exception.missing_parameter import MissingParameterError
 from models.framework_data import FrameworkData
 from models.node.processing.processing_node import ProcessingNode
 
+from statistics import mode
+
 
 class Interpolate(ProcessingNode):
     """ This node is used to interpolate the data in the input buffer. Data that was segmented is interpolated using this node and placed in the output buffer.
@@ -61,7 +63,7 @@ class Interpolate(ProcessingNode):
             if type(parameters['step_size']) is not int:
                 raise InvalidParameterValue(module=self._MODULE_NAME, name=self.name, parameter='step_size', cause='must_be_int')
             
-            if (parameters['step_size'] <= 1) or (parameters['step_size'] >= parameters['window_size']):
+            if (parameters['step_size'] < 1) or (parameters['step_size'] >= parameters['window_size']):
                 raise InvalidParameterValue(module=self._MODULE_NAME, name=self.name, parameter='step_size', cause='invalid_value')
         
     def _initialize_parameter_fields(self, parameters: dict):
@@ -132,7 +134,7 @@ class Interpolate(ProcessingNode):
 
                 for index in range(len(merged_data)):
                     if len(merged_data[index]) > 1:
-                        processed_data.input_data_on_channel([max(merged_data[index])], channel)
+                        processed_data.input_data_on_channel([mode(merged_data[index])], channel)
                     else:
                         processed_data.input_data_on_channel(merged_data[index], channel)
         else:

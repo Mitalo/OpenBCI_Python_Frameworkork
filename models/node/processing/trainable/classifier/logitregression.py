@@ -2,7 +2,7 @@ import abc
 from typing import Final, Any, Tuple
 
 from sklearn.base import TransformerMixin, BaseEstimator
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.linear_model import LogisticRegression
 
 from models.exception.invalid_parameter_value import InvalidParameterValue
 from models.exception.missing_parameter import MissingParameterError
@@ -10,9 +10,9 @@ from models.framework_data import FrameworkData
 from models.node.processing.trainable.classifier.sklearn_classifier import SKLearnClassifier
 
 
-class LDA(SKLearnClassifier):
-    """ This node is a wrapper for the ``LinearDiscriminantAnalysis`` classifier from sklearn. It is a subclass of
-    ``SKLearnClassifier`` and implements the abstract methods from it. The ``LinearDiscriminantAnalysis`` classifier
+class LogitRegression(SKLearnClassifier):
+    """ This node is a wrapper for the ``LogisticRegression`` classifier from sklearn. It is a subclass of
+    ``SKLearnClassifier`` and implements the abstract methods from it. The ``LogisticRegression`` classifier
     can be used to classify data into two or more classes. 
 
     Attributes:
@@ -20,7 +20,7 @@ class LDA(SKLearnClassifier):
 
     configuration.json usage: 
         **module** (*str*): The name of the module (``node.processing.trainable.classifier``)\n
-        **type** (*str*): The name of the class (``LDA``)\n
+        **type** (*str*): The name of the class (``LogitRegression``)\n
         **training_set_size** (*int*): The size of the training set in samples.\n
         **save_after_training** (*bool*): Whether to save the trained processor after training. This is a optional parameter.\n
         **save_file_path** (*str*): The path to save the trained processor if ``save_after_training`` is True. Only mandatory if ``save_after_training`` is True.\n
@@ -33,7 +33,7 @@ class LDA(SKLearnClassifier):
             **clear_input_buffer_after_process** (*bool*): Whether to clear the input buffer after processing.\n
             **clear_output_buffer_after_process** (*bool*): Whether to clear the output buffer after processing.\n
     """
-    _MODULE_NAME: Final[str] = 'node.processing.trainable.classifier.lda'
+    _MODULE_NAME: Final[str] = 'node.processing.trainable.classifier.logitregression'
 
     @abc.abstractmethod
     def _validate_parameters(self, parameters: dict):
@@ -55,13 +55,13 @@ class LDA(SKLearnClassifier):
         super()._initialize_parameter_fields(parameters)
 
     def _initialize_trainable_processor(self) -> Tuple[TransformerMixin, BaseEstimator]:
-        """ Initializes the trainable processor. In this case it initializes the ``LinearDiscriminantAnalysis`` classifier
+        """ Initializes the trainable processor. In this case it initializes the ``LogisticRegression`` classifier
         from sklearn.
 
-        :return: The initialized ``LinearDiscriminantAnalysis`` classifier.
+        :return: The initialized ``LogisticRegression`` classifier.
         :rtype: (TransformerMixin, BaseEstimator)
         """
-        return LinearDiscriminantAnalysis()
+        return LogisticRegression()
 
     @abc.abstractmethod
     def _should_retrain(self) -> bool:
