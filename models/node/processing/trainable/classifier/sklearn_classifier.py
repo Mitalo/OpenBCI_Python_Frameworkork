@@ -64,12 +64,12 @@ class SKLearnClassifier(SKLearnCompatibleTrainableNode):
 
     def _inner_process_data(self, data: Any) -> Any:
         data_shape = data.shape
-        if len(data_shape) > 2:
-            # Reshape array into a 2D array for predict function
-            nsamples = data_shape[0]
-            nx = data_shape[1]
-            ny = data_shape[2]
-            data = data.reshape((nsamples, nx*ny))
+        # if len(data_shape) > 2:
+        #     # Reshape array into a 2D array for predict function
+        #     windows = data_shape[0]
+        #     channels = data_shape[1]
+        #     window_size = data_shape[2]
+        #     data = data.reshape((windows, channels*window_size))
         return self.sklearn_processor.predict(data)
 
     def _get_probability(self, data: Any) -> Any:
@@ -77,12 +77,12 @@ class SKLearnClassifier(SKLearnCompatibleTrainableNode):
             return [[]]
         
         data_shape = data.shape
-        if len(data_shape) > 2:
-            # Reshape array into a 2D array for predict_proba function
-            nsamples = data_shape[0]
-            nx = data_shape[1]
-            ny = data_shape[2]
-            data = data.reshape((nsamples, nx*ny))
+        # if len(data_shape) > 2:
+        #     # Reshape array into a 2D array for predict_proba function
+        #     windows = data_shape[0]
+        #     channels = data_shape[1]
+        #     window_size = data_shape[2]
+        #     data = data.reshape((windows, channels*window_size))
 
         return self.sklearn_processor.predict_proba(data)
 
