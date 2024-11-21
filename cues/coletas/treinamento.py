@@ -61,9 +61,9 @@ def extract_features(signal, fs):
     return [mav, zc, ssc, wl, energy]
 
 # Função para processar e extrair características dos dados
-def process_and_extract_features(data, fs, lowcut, highcut, window_size):
-    signal_fp1 = bandpass_filter(data['Fp1'], lowcut, highcut, fs)
-    signal_c3 = bandpass_filter(data['C3'], lowcut, highcut, fs)
+def process_and_extract_features(signal_data, event_data, fs, lowcut, highcut, window_size):
+    signal_fp1 = bandpass_filter(signal_data['Fp1'], lowcut, highcut, fs)
+    signal_c3 = bandpass_filter(signal_data['C3'], lowcut, highcut, fs)
 
     # Retificação
     signal_fp1_rectified = rectify_signal(signal_fp1)
@@ -81,26 +81,27 @@ def process_and_extract_features(data, fs, lowcut, highcut, window_size):
     labels = []
 
     # Extrair características para cada janela de tempo
-    for i in range(0, len(data), fs):
+    for i in range(0, len(signal_data), fs):
         window_fp1 = signal_fp1_normalized[i:i+fs]
         window_c3 = signal_c3_normalized[i:i+fs]
 
         if len(window_fp1) == fs and len(window_c3) == fs:
             combined_features = extract_features(np.concatenate([window_fp1, window_c3]), fs)
             features.append(combined_features)
-            label = data['marker'].iloc[i]
+            label = event_data['marker'].iloc[i]
             labels.append(label)
 
     return np.array(features), np.array(labels)
 
 # Função para carregar e processar múltiplos arquivos
-def process_multiple_files(file_paths, fs, lowcut, highcut, window_size):
+def process_multiple_files(signal_files, event_files, fs, lowcut, highcut, window_size):
     features_list = []
     labels_list = []
     
-    for file_path in file_paths:
-        data = load_data(file_path)
-        features, labels = process_and_extract_features(data, fs, lowcut, highcut, window_size)
+    for signal_file, event_file in zip(signal_files, event_files):
+        signal_data = load_data(signal_file)
+        event_data = load_data(event_file)
+        features, labels = process_and_extract_features(signal_data, event_data, fs, lowcut, highcut, window_size)
         features_list.append(features)
         labels_list.append(labels)
     
@@ -114,7 +115,7 @@ def process_multiple_files(file_paths, fs, lowcut, highcut, window_size):
 def train_model(X_train, y_train):
     model = RandomForestClassifier(n_estimators=100, random_state=42)
     model.fit(X_train, y_train)
-    return model
+    return model    
 
 # Função para avaliar o modelo
 def evaluate_model(model, X_test, y_test):
@@ -124,47 +125,88 @@ def evaluate_model(model, X_test, y_test):
     print(f'Accuracy: {accuracy * 100:.2f}%')
     print(f'F1 Score: {f1:.2f}')
 
-# Lista de arquivos de treino
-train_files = [
-    'cues/coletas/A_angelo.csv',
-    'cues/coletas/E_angelo.csv',
-    'cues/coletas/I_angelo.csv',
-    'cues/coletas/O_angelo.csv', 
-    'cues/coletas/U_angelo.csv', 
-    'cues/coletas/A_gabriel.csv',
-    'cues/coletas/E_gabriel.csv', 
-    'cues/coletas/I_gabriel.csv', 
-    'cues/coletas/O_gabriel.csv',
-    'cues/coletas/U_gabriel.csv', 
-    'cues/coletas/A_gustavo.csv', 
-    'cues/coletas/E_gustavo.csv',
-    'cues/coletas/I_gustavo.csv', 
-    'cues/coletas/O_gustavo.csv', 
-    'cues/coletas/U_gustavo.csv',
-    'cues/coletas/A_mateus.csv', 
-    'cues/coletas/E_mateus.csv', 
-    'cues/coletas/I_mateus.csv',
-    'cues/coletas/O_mateus.csv', 
-    'cues/coletas/U_mateus.csv', 
-    'cues/coletas/A_murilo.csv',
-    'cues/coletas/E_murilo.csv', 
-    'cues/coletas/I_murilo.csv', 
-    'cues/coletas/O_murilo.csv',
-    'cues/coletas/U_murilo.csv', 
-    'cues/coletas/A_stefanye.csv', 
-    'cues/coletas/E_stefanye.csv',
-    'cues/coletas/I_stefanye.csv', 
-    'cues/coletas/O_stefanye.csv', 
-    'cues/coletas/U_stefanye.csv'
+# Lista de arquivos de treino (sinais e eventos)
+train_signal_files = [
+    'cues/coletas/train/A_angelo_data.csv',
+    'cues/coletas/train/E_angelo_data.csv',
+    'cues/coletas/train/I_angelo_data.csv',
+    'cues/coletas/train/O_angelo_data.csv', 
+    'cues/coletas/train/U_angelo_data.csv', 
+    'cues/coletas/train/A_gabriel_data.csv',
+    'cues/coletas/train/E_gabriel_data.csv', 
+    'cues/coletas/train/I_gabriel_data.csv', 
+    'cues/coletas/train/O_gabriel_data.csv',
+    'cues/coletas/train/U_gabriel_data.csv', 
+    'cues/coletas/train/A_gustavo_data.csv', 
+    'cues/coletas/train/E_gustavo_data.csv',
+    'cues/coletas/train/I_gustavo_data.csv', 
+    'cues/coletas/train/O_gustavo_data.csv', 
+    'cues/coletas/train/U_gustavo_data.csv',
+    'cues/coletas/train/A_mateus_data.csv', 
+    'cues/coletas/train/E_mateus_data.csv', 
+    'cues/coletas/train/I_mateus_data.csv',
+    'cues/coletas/train/O_mateus_data.csv', 
+    'cues/coletas/train/U_mateus_data.csv', 
+    'cues/coletas/train/A_murilo_data.csv',
+    'cues/coletas/train/E_murilo_data.csv', 
+    'cues/coletas/train/I_murilo_data.csv', 
+    'cues/coletas/train/O_murilo_data.csv',
+    'cues/coletas/train/U_murilo_data.csv', 
+    'cues/coletas/train/A_stefanye_data.csv', 
+    'cues/coletas/train/E_stefanye_data.csv',
+    'cues/coletas/train/I_stefanye_data.csv', 
+    'cues/coletas/train/O_stefanye_data.csv', 
+    'cues/coletas/train/U_stefanye_data.csv'
 ]
 
-# Lista de arquivos de teste
-test_files = [
-    'cues/coletas/A_antonio.csv', 
-    'cues/coletas/E_antonio.csv', 
-    'cues/coletas/I_antonio.csv',
-    'cues/coletas/O_antonio.csv', 
-    'cues/coletas/U_antonio.csv'
+train_event_files = [
+    'cues/coletas/train/A_angelo_events.csv',
+    'cues/coletas/train/E_angelo_events.csv',
+    'cues/coletas/train/I_angelo_events.csv',
+    'cues/coletas/train/O_angelo_events.csv', 
+    'cues/coletas/train/U_angelo_events.csv', 
+    'cues/coletas/train/A_gabriel_events.csv',
+    'cues/coletas/train/E_gabriel_events.csv', 
+    'cues/coletas/train/I_gabriel_events.csv', 
+    'cues/coletas/train/O_gabriel_events.csv',
+    'cues/coletas/train/U_gabriel_events.csv', 
+    'cues/coletas/train/A_gustavo_events.csv', 
+    'cues/coletas/train/E_gustavo_events.csv',
+    'cues/coletas/train/I_gustavo_events.csv', 
+    'cues/coletas/train/O_gustavo_events.csv', 
+    'cues/coletas/train/U_gustavo_events.csv',
+    'cues/coletas/train/A_mateus_events.csv', 
+    'cues/coletas/train/E_mateus_events.csv', 
+    'cues/coletas/train/I_mateus_events.csv',
+    'cues/coletas/train/O_mateus_events.csv', 
+    'cues/coletas/train/U_mateus_events.csv', 
+    'cues/coletas/train/A_murilo_events.csv',
+    'cues/coletas/train/E_murilo_events.csv', 
+    'cues/coletas/train/I_murilo_events.csv', 
+    'cues/coletas/train/O_murilo_events.csv',
+    'cues/coletas/train/U_murilo_events.csv', 
+    'cues/coletas/train/A_stefanye_events.csv', 
+    'cues/coletas/train/E_stefanye_events.csv',
+    'cues/coletas/train/I_stefanye_events.csv', 
+    'cues/coletas/train/O_stefanye_events.csv', 
+    'cues/coletas/train/U_stefanye_events.csv'
+]
+
+# Lista de arquivos de teste (sinais e eventos)
+test_signal_files = [
+    'cues/coletas/test/A_antonio_data.csv', 
+    'cues/coletas/test/E_antonio_data.csv', 
+    'cues/coletas/test/I_antonio_data.csv',
+    'cues/coletas/test/O_antonio_data.csv', 
+    'cues/coletas/test/U_antonio_data.csv'
+]
+
+test_event_files = [
+    'cues/coletas/test/A_antonio_events.csv', 
+    'cues/coletas/test/E_antonio_events.csv', 
+    'cues/coletas/test/I_antonio_events.csv',
+    'cues/coletas/test/O_antonio_events.csv', 
+    'cues/coletas/test/U_antonio_events.csv'
 ]
 
 # Definir parâmetros
@@ -174,13 +216,13 @@ highcut = 120.0  # Frequência de corte superior (ajustado para 120 Hz)
 window_size = 50  # Tamanho da janela para média móvel
 
 # Processar os dados de treino
-features_train, labels_train = process_multiple_files(train_files, fs, lowcut, highcut, window_size)
+features_train, labels_train = process_multiple_files(train_signal_files, train_event_files, fs, lowcut, highcut, window_size)
 
 # Treinar o modelo com todos os dados de treino
 model = train_model(features_train, labels_train)
 
 # Processar os dados de teste
-features_test, labels_test = process_multiple_files(test_files, fs, lowcut, highcut, window_size)
+features_test, labels_test = process_multiple_files(test_signal_files, test_event_files, fs, lowcut, highcut, window_size)
 
 # Avaliar o modelo nos dados de teste
 print("Avaliação no conjunto de teste:")
