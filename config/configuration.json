@@ -262,11 +262,39 @@
           "outputs": {
             "features": [
               {
-                "node": "events_estimated",
-                "input": "main"
+                "node": "logistic_regression",
+                "input": "data"
               }
             ],
             "events": [
+              {
+                "node": "logistic_regression",
+                "input": "label"
+              }
+            ]
+          }
+        },
+        "logistic_regression": {
+          "module": "models.node.processing.trainable.classifier",
+          "type": "LogitRegression",
+          "enable_log": true,
+          "training_set_size": 1735000,
+          "save_after_training": true,
+          "save_file_path":
+          "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\classifier.csv",
+          "load_trained": false,
+          "load_file_path":
+          "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\classifier.csv",
+          "buffer_options": {
+            "clear_output_buffer_on_data_input": true,
+            "clear_input_buffer_after_process": true,
+            "clear_output_buffer_after_process": true,
+            "clear_input_buffer_after_training": true,
+            "process_input_buffer_after_training": true,
+            "print_buffer_size": false
+          },
+          "outputs": {
+            "main": [
               {
                 "node": "events_estimated",
                 "input": "main"
