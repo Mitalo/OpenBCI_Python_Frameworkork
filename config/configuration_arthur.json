@@ -598,8 +598,7 @@
           "print_buffer_size": false,
           "clear_output_buffer_on_data_input": true,
           "clear_input_buffer_after_process": true,
-          "clear_output_buffer_after_process": true,
-          "print_buffer_size": false
+          "clear_output_buffer_after_process": true
         },
         "outputs": {}
       }

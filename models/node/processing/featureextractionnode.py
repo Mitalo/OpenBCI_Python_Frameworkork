@@ -4,6 +4,7 @@ from models.framework_data import FrameworkData
 from models.node.processing.processing_node import ProcessingNode
 from models.exception.missing_parameter import MissingParameterError
 from models.exception.invalid_parameter_value import InvalidParameterValue
+from collections import Counter
 
 class FeatureExtractionNode(ProcessingNode):
     """ This node extracts features from the input signal and associates them with event labels.
@@ -19,31 +20,13 @@ class FeatureExtractionNode(ProcessingNode):
     OUTPUT_FEATURES: Final[str] = 'features'
     OUTPUT_EVENTS: Final[str] = 'events'
 
-    def __init__(self, parameters: dict):
-        super().__init__(parameters)
-        self.fs = parameters.get('sampling_frequency', 250)
-        self.window_size = parameters.get('window_size', 50)
-        self._validate_parameters(parameters)
-
     def _validate_parameters(self, parameters: dict):
         """ Validates the parameters passed to this node.
 
         :param parameters: The parameters to validate.
         :type parameters: dict
         """
-                
-        if 'window_size' not in parameters:
-            raise MissingParameterError(module=self._MODULE_NAME,name=self.name,
-                                        parameter='window_size')
-        
-        if type(parameters['window_size']) is not float and type(
-            parameters['window_size']) is not int:
-            raise InvalidParameterValue(module=self._MODULE_NAME,name=self.name,
-                                        parameter='window_size',
-                                        cause='must_be_number')
-         
-        if parameters['window_size'] <= 1:
-            raise InvalidParameterValue(module=self._MODULE_NAME, name=self.name, parameter='window_size', cause='must_be_greater_than_0')
+        super()._validate_parameters(parameters)
 
     def _is_next_node_call_enabled(self) -> bool:
         """ This method will return ``True`` if the next node call is enabled. This method will always return ``True``
@@ -71,45 +54,50 @@ class FeatureExtractionNode(ProcessingNode):
         :return: The extracted features and associated labels.
         :rtype: Dict[str, FrameworkData]
         """
-        signal_data = data['features']
-        event_data = data['events']
+        signal_data = data[self.INPUT_FEATURES]
+        event_data = data[self.INPUT_EVENTS]
 
-        features = []
+        features_data = FrameworkData(sampling_frequency_hz=signal_data.sampling_frequency, channels=signal_data.channels)
+        labels_data = FrameworkData(sampling_frequency_hz=event_data.sampling_frequency, channels=event_data.channels)
+
+        for channel in signal_data.channels:
+
+            features = []
+            signal_channel_data = signal_data.get_data_on_channel(channel)
+
+            for i in range(0, len(signal_channel_data), 5*signal_data.sampling_frequency):
+                window = signal_data.get_data_on_channel(channel)[i:i+5*signal_data.sampling_frequency]
+
+                if len(window) == signal_data.sampling_frequency * 5:
+                    features.append(self.extract_features(window))
+                    
+            features_data.input_data_on_channel(features, channel)
+
+        label_channel_data = event_data.get_data_on_channel('marker')
         labels = []
 
-        signal_fp1_data = signal_data.get_data_on_channel('Fp1')
-        signal_c3_data = signal_data.get_data_on_channel('C3')
-        event_marker_data = event_data.get_data_on_channel('marker')
+        for i in range(0, len(label_channel_data), 5*labels_data.sampling_frequency):
+    
+            window_label = event_data.get_data_on_channel('marker')[i:i+5*labels_data.sampling_frequency]
 
-        # Extrair características para cada janela de tempo
-        for i in range(0, len(signal_fp1_data), self.fs):
-            window_fp1 = signal_fp1_data[i:i+self.fs]
-            window_c3 = signal_c3_data[i:i+self.fs]
-
-            if len(window_fp1) == self.fs and len(window_c3) == self.fs:
-                combined_features = self.extract_features(np.concatenate([window_fp1, window_c3]), self.fs)
-                features.append(combined_features)
-                label = event_data.get_data_on_channel('marker')[i]
+            if len(window_label) == labels_data.sampling_frequency * 5:
+                counter = Counter(window_label)
+                label,aux = counter.most_common(1)[0]#round(np.average(window_label))
                 labels.append(label)
-
-        features_data = FrameworkData(sampling_frequency_hz=self.fs, channels=['features'])
-        labels_data = FrameworkData(sampling_frequency_hz=self.fs, channels=['labels'])
-
-        features_data.input_data_on_channel(np.array(features), 'features')
-        labels_data.input_data_on_channel(np.array(labels), 'labels')
+                    
+        labels_data.input_data_on_channel(labels, 'marker')
 
         return {
             self.OUTPUT_FEATURES: features_data,
             self.OUTPUT_EVENTS: labels_data
         }
 
-    def extract_features(self, signal, fs):
+    def extract_features(self, signal):
         mav = np.mean(np.abs(signal))
         zc = len(np.where(np.diff(np.sign(signal)))[0])
         ssc = sum(np.sign(signal[i] - signal[i-1]) != np.sign(signal[i+1] - signal[i]) for i in range(1, len(signal)-1))
         wl = np.sum(np.abs(np.diff(signal)))
-        energy = np.sum(signal**2) / len(signal)
-        return [mav, zc, ssc, wl, energy]
+        return [mav, zc, ssc, wl]
 
     def _get_inputs(self) -> List[str]:
         """ Returns the input fields of this node.

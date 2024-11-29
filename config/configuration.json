@@ -1,5 +1,5 @@
 {
-    "show_diagram": true,
+    "show_diagram": false,
     "nodes": {
       "root": {
         "data": {
@@ -177,9 +177,30 @@
             "clear_output_buffer_after_process": true,
             "print_buffer_size": false
           },
-          "low_cut_frequency_hz": 20.0,
+          "low_cut_frequency_hz": 30.0,
           "high_cut_frequency_hz": 120.0,
           "order": 5,
+          "outputs": {
+            "main": [
+              {
+                "node": "notch",
+                "input": "main"
+              }
+            ]
+          }
+        },
+        "notch": {
+          "module": "models.node.processing.filter",
+          "type": "Notch",
+          "enable_log": true,
+          "buffer_options": {
+            "clear_output_buffer_on_data_input": true,
+            "clear_input_buffer_after_process": true,
+            "clear_output_buffer_after_process": true,
+            "print_buffer_size": false
+          },
+          "cut_frequency_hz": 60.0,
+          "Q": 30,
           "outputs": {
             "main": [
               {
@@ -210,7 +231,10 @@
         },
         "movingAverage": {
           "module": "models.node.processing",
-          "type": "MovingAverage",
+          "type": "Smoothing",
+          "window_type": "exponential",
+          "window_size": 50,
+          "convolution_mode": "valid",
           "enable_log": true,
           "buffer_options": {
             "clear_output_buffer_on_data_input": true,
@@ -218,7 +242,6 @@
             "clear_output_buffer_after_process": true,
             "print_buffer_size": false
           },
-          "window_size": 50,
           "outputs": {
             "main": [
               {
@@ -258,92 +281,43 @@
             "print_buffer_size": false
           },
           "sampling_frequency": 250,
-          "window_size": 50,
           "outputs": {
             "features": [
               {
-                "node": "logistic_regression",
+                "node": "lda",
                 "input": "data"
               }
             ],
             "events": [
               {
-                "node": "logistic_regression",
+                "node": "lda",
                 "input": "label"
               }
             ]
           }
         },
-        "logistic_regression": {
+        "lda": {
           "module": "models.node.processing.trainable.classifier",
-          "type": "LogitRegression",
+          "type": "LDA",
           "enable_log": true,
-          "training_set_size": 1735000,
-          "save_after_training": true,
-          "save_file_path":
-          "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\classifier.csv",
-          "load_trained": false,
-          "load_file_path":
-          "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\classifier.csv",
           "buffer_options": {
             "clear_output_buffer_on_data_input": true,
             "clear_input_buffer_after_process": true,
             "clear_output_buffer_after_process": true,
             "clear_input_buffer_after_training": true,
-            "process_input_buffer_after_training": true,
+            "process_input_buffer_after_training": false,
             "print_buffer_size": false
           },
-          "outputs": {
-            "main": [
-              {
-                "node": "events_estimated",
-                "input": "main"
-              }
-            ]
-          }
-        },
-        "random_forest": {
-          "module": "models.node.processing.trainable.classifier",
-          "type": "RandomForest",
-          "enable_log": true,
-          "training_set_size": 1735000,
-          "n_estimators": 100, 
-          "random_state": 42,
+          "training_set_size": 2,
           "save_after_training": true,
-          "save_file_path":
-          "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\classifier.csv",
           "load_trained": false,
-          "load_file_path":
-          "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\classifier.csv",
-          "buffer_options": {
-            "clear_output_buffer_on_data_input": true,
-            "clear_input_buffer_after_process": true,
-            "clear_output_buffer_after_process": true,
-            "clear_input_buffer_after_training": true,
-            "process_input_buffer_after_training": true,
-            "print_buffer_size": false
-          },
+          "save_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\LDA_emg.sav",
+          "load_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\LDA_emg.sav",
           "outputs": {
-            "main": [
-              {
-                "node": "events_estimated",
-                "input": "main"
-              }
-            ]
+            "main": [],
+            "probability": [],
+            "training_finished": []
           }
-        },
-        "events_estimated": {
-          "module": "models.node.output.file",
-          "type": "CSVFile",
-          "enable_log": true,
-          "file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\estimated.csv",
-          "buffer_options": {
-            "print_buffer_size": false,
-            "clear_output_buffer_on_data_input": true,
-            "clear_input_buffer_after_process": true,
-            "clear_output_buffer_after_process": true
-          },
-          "outputs": {}
         }
       }
     }

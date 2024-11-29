@@ -14,10 +14,6 @@ class NormalizeSignal(ProcessingNode):
 
     INPUT_MAIN: Final[str] = 'main'
     OUTPUT_MAIN: Final[str] = 'main'
-
-    def __init__(self, parameters: dict):
-        super().__init__(parameters)
-        self._validate_parameters(parameters)
     
     def _is_next_node_call_enabled(self) -> bool:
         """ This method will return ``True`` if the next node call is enabled. This method will always return ``True``

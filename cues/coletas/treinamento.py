@@ -1,8 +1,11 @@
 import pandas as pd
 import numpy as np
-from scipy.signal import butter, filtfilt
+
+from scipy.signal import butter, filtfilt, iirnotch
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score
+from sklearn.linear_model import LogisticRegression
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis, QuadraticDiscriminantAnalysis
 
 # Função para carregar os dados
 def load_data(file_path):
@@ -10,17 +13,44 @@ def load_data(file_path):
     return data
 
 # Função para aplicar o filtro Butterworth (banda passante)
-def butter_bandpass(lowcut, highcut, fs, order=5):
+def butter_bandpass(lowcut, highcut, fs, order=4):
     nyquist = 0.5 * fs
     low = lowcut / nyquist
     high = highcut / nyquist
     b, a = butter(order, [low, high], btype='band')
     return b, a
 
+def butter_lowpass(cutoff, fs, order=5):
+    nyq = 0.5 * fs
+    normal_cutoff = cutoff / nyq
+    b, a = butter(order, normal_cutoff, btype='low', analog=False)
+    return b, a
+    
+def butter_highpass(cutoff, fs, order=5):
+    nyq = 0.5 * fs
+    normal_cutoff = cutoff / nyq
+    b, a = butter(order, normal_cutoff, btype='high', analog=False)
+    return b, a
+
+def apply_lowpass_filter(data, cutoff, fs, order=5):
+    b, a = butter_lowpass(cutoff, fs, order=order)
+    y = filtfilt(b, a, data)
+    return y
+
+def apply_highpass_filter(data, cutoff, fs, order=5):
+    b, a = butter_highpass(cutoff, fs, order=order)
+    y = filtfilt(b, a, data)
+    return y
+
 # Função para filtrar o sinal
 def bandpass_filter(data, lowcut, highcut, fs, order=5):
     b, a = butter_bandpass(lowcut, highcut, fs, order)
     return filtfilt(b, a, data)
+
+def apply_notch_filter(data, fs, f0=60.0, Q=30.0):
+    b, a = iirnotch(f0, Q, fs)
+    y = filtfilt(b, a, data)
+    return y
 
 # Função de retificação do sinal (valor absoluto)
 def rectify_signal(signal):
@@ -51,19 +81,43 @@ def compute_ssc(signal):
 
 def compute_wl(signal):
     return np.sum(np.abs(np.diff(signal)))
+    
+def compute_dasdv(signal):
+    diff = np.diff(signal)
+    abs_diff = np.abs(diff)
+    mean_squares = np.mean(np.square(abs_diff))
+    dasdv_value = np.sqrt(mean_squares)
+    return dasdv_value
 
+def compute_wamp(signal):
+    wamp = 0
+    for i in range(1, len(signal)):
+        if abs(signal[i] - signal[i-1]) > 0:
+            wamp += 1
+    return wamp
+        
 def extract_features(signal, fs):
     mav = compute_mav(signal)
     zc = compute_zc(signal)
     ssc = compute_ssc(signal)
     wl = compute_wl(signal)
-    energy = np.sum(signal**2) / len(signal)
-    return [mav, zc, ssc, wl, energy]
+    wamp = compute_wamp(signal)
+    dasdv = compute_dasdv(signal)
+    return [mav, zc, ssc, wl]
 
 # Função para processar e extrair características dos dados
 def process_and_extract_features(signal_data, event_data, fs, lowcut, highcut, window_size):
     signal_fp1 = bandpass_filter(signal_data['Fp1'], lowcut, highcut, fs)
     signal_c3 = bandpass_filter(signal_data['C3'], lowcut, highcut, fs)
+
+    signal_fp1 = apply_highpass_filter(signal_fp1, 30, fs)
+    signal_c3 = apply_highpass_filter(signal_c3, 30, fs)
+
+    signal_fp1 = apply_lowpass_filter(signal_fp1, 100, fs)
+    signal_c3 = apply_lowpass_filter(signal_c3, 100, fs)
+
+    signal_fp1 = apply_notch_filter(signal_fp1, fs)
+    signal_c3 = apply_notch_filter(signal_c3, fs)
 
     # Retificação
     signal_fp1_rectified = rectify_signal(signal_fp1)
@@ -81,11 +135,11 @@ def process_and_extract_features(signal_data, event_data, fs, lowcut, highcut, w
     labels = []
 
     # Extrair características para cada janela de tempo
-    for i in range(0, len(signal_data), fs):
-        window_fp1 = signal_fp1_normalized[i:i+fs]
-        window_c3 = signal_c3_normalized[i:i+fs]
+    for i in range(0, len(signal_data), 5*fs):
+        window_fp1 = signal_fp1_normalized[i:i+5*fs]
+        window_c3 = signal_c3_normalized[i:i+5*fs]
 
-        if len(window_fp1) == fs and len(window_c3) == fs:
+        if len(window_fp1) == 5*fs and len(window_c3) == 5*fs:
             combined_features = extract_features(np.concatenate([window_fp1, window_c3]), fs)
             features.append(combined_features)
             label = event_data['marker'].iloc[i]
@@ -113,9 +167,10 @@ def process_multiple_files(signal_files, event_files, fs, lowcut, highcut, windo
 
 # Função para treinar o modelo
 def train_model(X_train, y_train):
-    model = RandomForestClassifier(n_estimators=100, random_state=42)
+    # model = RandomForestClassifier(n_estimators=100, random_state=42)
+    model = LinearDiscriminantAnalysis()
     model.fit(X_train, y_train)
-    return model    
+    return model
 
 # Função para avaliar o modelo
 def evaluate_model(model, X_test, y_test):
@@ -147,6 +202,11 @@ train_signal_files = [
     'cues/coletas/train/I_mateus_data.csv',
     'cues/coletas/train/O_mateus_data.csv', 
     'cues/coletas/train/U_mateus_data.csv', 
+    'cues/coletas/train/A_messias_data.csv', 
+    'cues/coletas/train/E_messias_data.csv', 
+    'cues/coletas/train/I_messias_data.csv',
+    'cues/coletas/train/O_messias_data.csv', 
+    'cues/coletas/train/U_messias_data.csv', 
     'cues/coletas/train/A_murilo_data.csv',
     'cues/coletas/train/E_murilo_data.csv', 
     'cues/coletas/train/I_murilo_data.csv', 
@@ -169,7 +229,7 @@ train_event_files = [
     'cues/coletas/train/E_gabriel_events.csv', 
     'cues/coletas/train/I_gabriel_events.csv', 
     'cues/coletas/train/O_gabriel_events.csv',
-    'cues/coletas/train/U_gabriel_events.csv', 
+    'cues/coletas/train/U_gabriel_events.csv',
     'cues/coletas/train/A_gustavo_events.csv', 
     'cues/coletas/train/E_gustavo_events.csv',
     'cues/coletas/train/I_gustavo_events.csv', 
@@ -180,6 +240,11 @@ train_event_files = [
     'cues/coletas/train/I_mateus_events.csv',
     'cues/coletas/train/O_mateus_events.csv', 
     'cues/coletas/train/U_mateus_events.csv', 
+    'cues/coletas/train/A_messias_events.csv', 
+    'cues/coletas/train/E_messias_events.csv', 
+    'cues/coletas/train/I_messias_events.csv',
+    'cues/coletas/train/O_messias_events.csv', 
+    'cues/coletas/train/U_messias_events.csv', 
     'cues/coletas/train/A_murilo_events.csv',
     'cues/coletas/train/E_murilo_events.csv', 
     'cues/coletas/train/I_murilo_events.csv', 
@@ -211,7 +276,7 @@ test_event_files = [
 
 # Definir parâmetros
 fs = 250  # Frequência de amostragem
-lowcut = 20.0  # Frequência de corte inferior
+lowcut = 15.0  # Frequência de corte inferior
 highcut = 120.0  # Frequência de corte superior (ajustado para 120 Hz)
 window_size = 50  # Tamanho da janela para média móvel
 
@@ -227,3 +292,11 @@ features_test, labels_test = process_multiple_files(test_signal_files, test_even
 # Avaliar o modelo nos dados de teste
 print("Avaliação no conjunto de teste:")
 evaluate_model(model, features_test, labels_test)
+
+predictions = model.predict(features_test)
+
+output_df = pd.DataFrame({
+    'True Label': labels_test,
+    'Predicted Label': predictions
+})
+output_df.to_csv('G:/Meu Drive/PDI/UTFPR/TCC/Outputs/predictions.csv', index=False)
