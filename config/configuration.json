@@ -57,7 +57,7 @@
           "outputs": {
             "main": [
               {
-                "node": "lowpass",
+                "node": "highpass",
                 "input": "main"
               }
             ],
@@ -116,8 +116,8 @@
           "outputs": {
             "main": [
               {
-                "node": "feature_extraction",
-                "input": "events"
+                "node": "segmentation",
+                "input": "label"
               }
             ],
             "timestamp": []
@@ -161,7 +161,7 @@
           "outputs": {
             "main": [
               {
-                "node": "bandpass",
+                "node": "notch",
                 "input": "main"
               }
             ]
@@ -264,8 +264,37 @@
           "outputs": {
             "main": [
               {
+                "node": "segmentation",
+                "input": "data"
+              }
+            ]
+          }
+        },
+        "segmentation": {
+          "module": "models.node.processing.segmenter",
+          "type": "LabelBasedFixedWindowSegmenter",
+          "enable_log": true,
+          "label_value": 0,
+          "filling_value": "zero",
+          "samples_after_label": 0,
+          "samples_before_label": 1250,
+          "buffer_options": {
+            "clear_output_buffer_on_data_input": false,
+            "clear_input_buffer_after_process": true,
+            "clear_output_buffer_after_process": true,
+            "print_buffer_size": false
+          },
+          "outputs": {
+            "data": [
+              {
                 "node": "feature_extraction",
                 "input": "features"
+              }
+            ],
+            "label": [
+              {
+                "node": "feature_extraction",
+                "input": "events"
               }
             ]
           }
@@ -313,6 +342,52 @@
           "load_trained": false,
           "save_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\LDA_emg.sav",
           "load_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\LDA_emg.sav",
+          "outputs": {
+            "main": [],
+            "probability": [],
+            "training_finished": []
+          }
+        },
+        "logistic": {
+          "module": "models.node.processing.trainable.classifier",
+          "type": "logitregression",
+          "enable_log": true,
+          "buffer_options": {
+            "clear_output_buffer_on_data_input": true,
+            "clear_input_buffer_after_process": true,
+            "clear_output_buffer_after_process": true,
+            "clear_input_buffer_after_training": true,
+            "process_input_buffer_after_training": false,
+            "print_buffer_size": false
+          },
+          "training_set_size": 2,
+          "save_after_training": true,
+          "load_trained": false,
+          "save_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\LR_emg.sav",
+          "load_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\LR_emg.sav",
+          "outputs": {
+            "main": [],
+            "probability": [],
+            "training_finished": []
+          }
+        },
+        "svc": {
+          "module": "models.node.processing.trainable.classifier",
+          "type": "SVC",
+          "enable_log": true,
+          "buffer_options": {
+            "clear_output_buffer_on_data_input": true,
+            "clear_input_buffer_after_process": true,
+            "clear_output_buffer_after_process": true,
+            "clear_input_buffer_after_training": true,
+            "process_input_buffer_after_training": false,
+            "print_buffer_size": false
+          },
+          "training_set_size": 2,
+          "save_after_training": true,
+          "load_trained": false,
+          "save_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\SVC_emg.sav",
+          "load_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\SVC_emg.sav",
           "outputs": {
             "main": [],
             "probability": [],

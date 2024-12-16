@@ -53,6 +53,7 @@ class NormalizeSignal(ProcessingNode):
         for channel in input_data.channels:
             signal = input_data.get_data_on_channel(channel)
             normalized_signal = (signal - np.mean(signal)) / np.std(signal)
+            # normalized_signal = (signal - np.min(signal)) / (np.max(signal) - np.min(signal))
             normalized_data.input_data_on_channel(normalized_signal, channel)
 
         return {

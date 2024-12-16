@@ -27,7 +27,7 @@
           "outputs": {
             "main": [
               {
-                "node": "lowpass",
+                "node": "highpass",
                 "input": "main"
               }
             ],
@@ -103,7 +103,7 @@
           "outputs": {
             "main": [
               {
-                "node": "bandpass",
+                "node": "notch",
                 "input": "main"
               }
             ]
@@ -255,6 +255,62 @@
           "load_trained": true,
           "save_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\LDA_emg.sav",
           "load_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\LDA_emg.sav",
+          "outputs": {
+            "main": [],
+            "probability": [
+                {
+                    "node": "decoder",
+                    "input": "main"
+                }
+            ],
+            "training_finished": []
+          }
+        },
+        "logistic": {
+          "module": "models.node.processing.trainable.classifier",
+          "type": "logitregression",
+          "enable_log": true,
+          "buffer_options": {
+            "clear_output_buffer_on_data_input": true,
+            "clear_input_buffer_after_process": true,
+            "clear_output_buffer_after_process": true,
+            "clear_input_buffer_after_training": false,
+            "process_input_buffer_after_training": true,
+            "print_buffer_size": false
+          },
+          "training_set_size": 2,
+          "save_after_training": true,
+          "load_trained": true,
+          "save_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\LR_emg.sav",
+          "load_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\LR_emg.sav",
+          "outputs": {
+            "main": [],
+            "probability": [
+                {
+                    "node": "decoder",
+                    "input": "main"
+                }
+            ],
+            "training_finished": []
+          }
+        },
+        "svc": {
+          "module": "models.node.processing.trainable.classifier",
+          "type": "SVC",
+          "enable_log": true,
+          "buffer_options": {
+            "clear_output_buffer_on_data_input": true,
+            "clear_input_buffer_after_process": true,
+            "clear_output_buffer_after_process": true,
+            "clear_input_buffer_after_training": false,
+            "process_input_buffer_after_training": true,
+            "print_buffer_size": false
+          },
+          "training_set_size": 2,
+          "save_after_training": true,
+          "load_trained": true,
+          "save_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\SVC_emg.sav",
+          "load_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\SVC_emg.sav",
           "outputs": {
             "main": [],
             "probability": [

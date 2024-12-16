@@ -68,8 +68,7 @@ class FeatureExtractionNode(ProcessingNode):
             for i in range(0, len(signal_channel_data), 5*signal_data.sampling_frequency):
                 window = signal_data.get_data_on_channel(channel)[i:i+5*signal_data.sampling_frequency]
 
-                if len(window) == signal_data.sampling_frequency * 5:
-                    features.append(self.extract_features(window))
+                features.append(self.extract_features(window))
                     
             features_data.input_data_on_channel(features, channel)
 
@@ -80,10 +79,9 @@ class FeatureExtractionNode(ProcessingNode):
     
             window_label = event_data.get_data_on_channel('marker')[i:i+5*labels_data.sampling_frequency]
 
-            if len(window_label) == labels_data.sampling_frequency * 5:
-                counter = Counter(window_label)
-                label,aux = counter.most_common(1)[0]#round(np.average(window_label))
-                labels.append(label)
+            counter = Counter(window_label)
+            label,aux = counter.most_common(1)[0]#round(np.average(window_label))
+            labels.append(label)
                     
         labels_data.input_data_on_channel(labels, 'marker')
 
@@ -97,6 +95,9 @@ class FeatureExtractionNode(ProcessingNode):
         zc = len(np.where(np.diff(np.sign(signal)))[0])
         ssc = sum(np.sign(signal[i] - signal[i-1]) != np.sign(signal[i+1] - signal[i]) for i in range(1, len(signal)-1))
         wl = np.sum(np.abs(np.diff(signal)))
+        rms = np.sqrt(np.mean(np.square(signal)))
+        dasdv = np.sqrt(np.mean(np.square(np.abs(np.diff(signal)))))
+        # return [mav, wl, dasdv]
         return [mav, zc, ssc, wl]
 
     def _get_inputs(self) -> List[str]:

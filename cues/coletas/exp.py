@@ -2,11 +2,11 @@ import os
 import pandas as pd
 
 # Diretório onde os arquivos CSV estão localizados
-input_directory = "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas"
+input_directory = "C:/Users/italo/OneDrive/Documentos/GitHub/OpenBCI_Python_Frameworkork/cues/coletas/treino novo"
 
 # Diretório onde os arquivos modificados serão salvos
-output_directory_fp1_c3_time = "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\novos\\train"
-output_directory_time_marker = "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\novos\\train"
+output_directory_fp1_c3_time = "C:/Users/italo/OneDrive/Documentos/GitHub/OpenBCI_Python_Frameworkork/cues/coletas/treino novo/train"
+output_directory_time_marker = "C:/Users/italo/OneDrive/Documentos/GitHub/OpenBCI_Python_Frameworkork/cues/coletas/treino novo/train"
 
 # Criar os diretórios de saída se não existirem
 os.makedirs(output_directory_fp1_c3_time, exist_ok=True)
