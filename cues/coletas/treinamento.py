@@ -18,41 +18,41 @@ def load_data(file_path):
     return data
 
 # Função para aplicar o filtro Butterworth (banda passante)
-def butter_bandpass(lowcut, highcut, fs, order=4):
+def butter_bandpass(lowcut, highcut, fs, order=3):
     nyquist = 0.5 * fs
     low = lowcut / nyquist
     high = highcut / nyquist
     b, a = butter(order, [low, high], btype='band')
     return b, a
 
-def butter_lowpass(cutoff, fs, order=5):
+def butter_lowpass(cutoff, fs, order=4):
     nyq = 0.5 * fs
     normal_cutoff = cutoff / nyq
     b, a = butter(order, normal_cutoff, btype='low', analog=False)
     return b, a
     
-def butter_highpass(cutoff, fs, order=5):
+def butter_highpass(cutoff, fs, order=2):
     nyq = 0.5 * fs
     normal_cutoff = cutoff / nyq
     b, a = butter(order, normal_cutoff, btype='high', analog=False)
     return b, a
 
-def apply_lowpass_filter(data, cutoff, fs, order=5):
+def apply_lowpass_filter(data, cutoff, fs, order=4):
     b, a = butter_lowpass(cutoff, fs, order=order)
     y = filtfilt(b, a, data)
     return y
 
-def apply_highpass_filter(data, cutoff, fs, order=5):
+def apply_highpass_filter(data, cutoff, fs, order=2):
     b, a = butter_highpass(cutoff, fs, order=order)
     y = filtfilt(b, a, data)
     return y
 
 # Função para filtrar o sinal
-def bandpass_filter(data, lowcut, highcut, fs, order=5):
+def bandpass_filter(data, lowcut, highcut, fs, order=3):
     b, a = butter_bandpass(lowcut, highcut, fs, order)
     return filtfilt(b, a, data)
 
-def apply_notch_filter(data, fs, f0=60.0, Q=30.0):
+def apply_notch_filter(data, fs, f0=60.0, Q=60.0):
     b, a = iirnotch(f0, Q, fs)
     y = filtfilt(b, a, data)
     return y
@@ -76,16 +76,36 @@ def min_max(signal):
 def compute_mav(signal):
     return np.mean(np.abs(signal))
 
+# def compute_zc(signal):
+#     zero_crossings = np.where(np.diff(np.sign(signal)))[0]
+#     return len(zero_crossings)
+
 def compute_zc(signal):
-    zero_crossings = np.where(np.diff(np.sign(signal)))[0]
-    return len(zero_crossings)
+    threshold = 0
+    zc_count = 0
+    for i in range(1, len(signal)):
+        # Verifica se houve mudança de sinal
+        if (signal[i-1] * signal[i] < 0 and 
+                abs(signal[i] - signal[i-1]) > threshold):
+            zc_count += 1
+    return zc_count
 
 def compute_ssc(signal):
+    threshold = 0
     ssc_count = 0
-    for i in range(1, len(signal)-1):
-        if np.sign(signal[i] - signal[i-1]) != np.sign(signal[i+1] - signal[i]):
+    for i in range(1, len(signal) - 1):
+        if ((signal[i] - signal[i-1]) * (signal[i] - signal[i+1]) > 0 and 
+                abs(signal[i] - signal[i-1]) > threshold and 
+                abs(signal[i] - signal[i+1]) > threshold):
             ssc_count += 1
     return ssc_count
+
+# def compute_ssc(signal):
+#     ssc_count = 0
+#     for i in range(1, len(signal)-1):
+#         if np.sign(signal[i] - signal[i-1]) != np.sign(signal[i+1] - signal[i]):
+#             ssc_count += 1
+#     return ssc_count
 
 def compute_wl(signal):
     return np.sum(np.abs(np.diff(signal)))
@@ -115,29 +135,30 @@ def extract_features(signal, fs):
 
 # Função para processar e extrair características dos dados
 def process_and_extract_features(signal_data, event_data, fs, lowcut, highcut, window_size):
-    # signal_fp1 = bandpass_filter(signal_data['Fp1'], lowcut, highcut, fs)
-    # signal_c3 = bandpass_filter(signal_data['C3'], lowcut, highcut, fs)
 
-    signal_fp1 = apply_highpass_filter(signal_data['Fp1'], 30, fs)
-    signal_c3 = apply_highpass_filter(signal_data['C3'], 30, fs)
+    signal_fp1 = apply_lowpass_filter(signal_data['Fp1'], 120, fs)
+    signal_c3 = apply_lowpass_filter(signal_data['C3'], 120, fs)
 
-    # signal_fp1 = apply_lowpass_filter(signal_fp1, 100, fs)
-    # signal_c3 = apply_lowpass_filter(signal_c3, 100, fs)
+    signal_fp1 = apply_highpass_filter(signal_fp1, 30, fs)
+    signal_c3 = apply_highpass_filter(signal_c3, 30, fs)
+
+    signal_fp1 = bandpass_filter(signal_fp1, lowcut, highcut, fs)
+    signal_c3 = bandpass_filter(signal_c3, lowcut, highcut, fs)
 
     signal_fp1 = apply_notch_filter(signal_fp1, fs)
     signal_c3 = apply_notch_filter(signal_c3, fs)
 
     # Retificação
-    signal_fp1_rectified = rectify_signal(signal_fp1)
-    signal_c3_rectified = rectify_signal(signal_c3)
+    # signal_fp1_rectified = rectify_signal(signal_fp1)
+    # signal_c3_rectified = rectify_signal(signal_c3)
 
     # Média Móvel
-    signal_fp1_smooth = moving_average(signal_fp1_rectified, window_size)
-    signal_c3_smooth = moving_average(signal_c3_rectified, window_size)
+    # signal_fp1_smooth = moving_average(signal_fp1_rectified, window_size)
+    # signal_c3_smooth = moving_average(signal_c3_rectified, window_size)
 
     # Normalização
-    signal_fp1_normalized = normalize_signal(signal_fp1_smooth)
-    signal_c3_normalized = normalize_signal(signal_c3_smooth)
+    signal_fp1_normalized = normalize_signal(signal_fp1)
+    signal_c3_normalized = normalize_signal(signal_c3)
 
     features = []
     labels = []
@@ -148,7 +169,9 @@ def process_and_extract_features(signal_data, event_data, fs, lowcut, highcut, w
         window_c3 = signal_c3_normalized[i:i+5*fs]
 
         # if len(window_fp1) == 5*fs and len(window_c3) == 5*fs:
-        combined_features = extract_features(np.concatenate([window_fp1, window_c3]), fs)
+        featFp1 = extract_features(window_fp1, 5*fs)
+        featC3 = extract_features(window_c3, 5*fs)
+        combined_features = np.concatenate([featFp1, featC3])
         features.append(combined_features)
 
     for i in range(0, len(event_data), 5*fs):
@@ -417,7 +440,7 @@ test_event_files = [
 
 # Definir parâmetros
 fs = 250  # Frequência de amostragem
-lowcut = 15.0  # Frequência de corte inferior
+lowcut = 30.0  # Frequência de corte inferior
 highcut = 120.0  # Frequência de corte superior (ajustado para 120 Hz)
 window_size = 20  # Tamanho da janela para média móvel
 

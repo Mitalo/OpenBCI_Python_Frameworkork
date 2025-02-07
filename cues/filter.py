@@ -38,8 +38,8 @@ def apply_notch_filter(data, fs, f0=60.0, Q=30.0):
     return y
 
 fs = 250
-low_cutoff = 100
-high_cutoff = 20
+low_cutoff = 120
+high_cutoff = 30
 order = 5
 
 df['Fp1_highpass'] = apply_highpass_filter(df['Fp1'], high_cutoff, fs, order)

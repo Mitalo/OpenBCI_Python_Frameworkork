@@ -11,7 +11,7 @@
             "request": "launch",
             "program": "main.py",
             "console": "integratedTerminal",
-            "args": ["--config", "config/configuration.json"]
+            "args": ["--config", "config/test_emg.json"]
         }
     ]
 }

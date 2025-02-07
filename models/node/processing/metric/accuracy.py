@@ -5,6 +5,8 @@ from models.node.processing.processing_node import ProcessingNode
 from sklearn import metrics
 from sklearn.metrics import confusion_matrix
 import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 
 class accuracy(ProcessingNode):
@@ -113,6 +115,11 @@ class accuracy(ProcessingNode):
         output.input_data_on_channel([accuracy])
         # cm = confusion_matrix(actual, predicted)
         # print(cm)
+        # sns.heatmap(cm, annot=True)
+        # plt.xlabel('Previsões')
+        # plt.ylabel('Valores reais')
+        # plt.title('Matriz de confusão')
+        # plt.show()
         return {
             self.OUTPUT_MAIN: output
         }

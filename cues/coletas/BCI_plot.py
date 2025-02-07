@@ -6,8 +6,6 @@ parser = argparse.ArgumentParser(description="Script para plotar o sinal do open
 parser.add_argument('arquivo', type=str, help='Nome do arquivo a ser lido')
 args = parser.parse_args()
 
-
-
 df = pd.read_csv(args.arquivo)
 
 df['marker_normalizado'] = (df['marker'] - df['marker'].min()) / (df['marker'].max() - df['marker'].min())

@@ -1,399 +1,358 @@
 {
-    "show_diagram": false,
-    "nodes": {
-      "root": {
-        "data": {
-          "module": "models.node.generator.file",
-          "type": "CSVFileArray",
-          "enable_log": true,
-          "file_path":
-          [
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\A_angelo_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\E_angelo_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\I_angelo_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\O_angelo_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\U_angelo_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\A_gabriel_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\E_gabriel_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\I_gabriel_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\O_gabriel_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\U_gabriel_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\A_gustavo_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\E_gustavo_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\I_gustavo_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\O_gustavo_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\U_gustavo_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\A_mateus_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\E_mateus_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\I_mateus_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\O_mateus_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\U_mateus_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\A_murilo_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\E_murilo_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\I_murilo_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\O_murilo_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\U_murilo_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\A_messias_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\E_messias_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\I_messias_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\O_messias_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\U_messias_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\A_stefanye_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\E_stefanye_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\I_stefanye_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\O_stefanye_data.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\U_stefanye_data.csv"
+  "show_diagram": false,
+  "nodes": {
+    "root": {
+      "data": {
+        "module": "models.node.generator.file",
+        "type": "CSVFileArray",
+        "enable_log": true,
+        "file_path":
+        [
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\A_antonio_data_part2.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\A_antonio_data_part3.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\A_antonio_data_part4.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\E_antonio_data_part2.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\E_antonio_data_part3.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\E_antonio_data_part4.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\I_antonio_data_part2.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\I_antonio_data_part3.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\I_antonio_data_part4.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\O_antonio_data_part2.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\O_antonio_data_part3.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\O_antonio_data_part4.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\U_antonio_data_part2.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\U_antonio_data_part3.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\U_antonio_data_part4.csv"
+        ],
+        "data_type": "float",
+        "sampling_frequency": 250,
+        "channel_column_names": [
+          "Fp1",
+          "C3"
           ],
-          "data_type": "float",
-          "sampling_frequency": 250,
-          "channel_column_names": [
-            "Fp1",
-            "C3"
-            ],
-          "buffer_options":{
-            "clear_output_buffer_on_generate": true,
-            "print_buffer_size": false
-          },
-          "outputs": {
-            "main": [
-              {
-                "node": "highpass",
-                "input": "main"
-              }
-            ],
-            "timestamp": []
-          }
+        "buffer_options":{
+          "clear_output_buffer_on_generate": true,
+          "print_buffer_size": false
         },
-        "events": {
-          "module": "models.node.generator.file",
-          "type": "CSVFileArray",
-          "enable_log": true,
-          "file_path": [
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\A_angelo_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\E_angelo_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\I_angelo_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\O_angelo_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\U_angelo_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\A_gabriel_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\E_gabriel_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\I_gabriel_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\O_gabriel_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\U_gabriel_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\A_gustavo_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\E_gustavo_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\I_gustavo_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\O_gustavo_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\U_gustavo_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\A_mateus_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\E_mateus_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\I_mateus_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\O_mateus_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\U_mateus_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\A_murilo_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\E_murilo_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\I_murilo_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\O_murilo_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\U_murilo_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\A_messias_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\E_messias_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\I_messias_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\O_messias_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\U_messias_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\A_stefanye_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\E_stefanye_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\I_stefanye_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\O_stefanye_events.csv",
-            "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\train\\U_stefanye_events.csv"
+        "outputs": {
+          "main": [
+            {
+              "node": "lowpass",
+              "input": "main"
+            }
           ],
-          "sampling_frequency": 250,
-          "channel_column_names": [
-            "marker"
-          ],
-          "buffer_options": {
-            "clear_output_buffer_on_generate": true,
-            "print_buffer_size": false
-          },
-          "outputs": {
-            "main": [
-              {
-                "node": "segmentation",
-                "input": "label"
-              }
-            ],
-            "timestamp": []
-          }
+          "timestamp": []
         }
       },
-      "common": {
-        "lowpass": {
-          "module": "models.node.processing.filter",
-          "type": "LowPass",
-          "enable_log": true,
-          "buffer_options": {
-            "clear_output_buffer_on_data_input": true,
-            "clear_input_buffer_after_process": true,
-            "clear_output_buffer_after_process": true,
-            "print_buffer_size": false
-          },
-          "high_cut_frequency_hz": 100.0,
-          "order": 5,
-          "outputs": {
-            "main": [
-              {
-                "node": "highpass",
-                "input": "main"
-              }
-            ]
-          }
+      "events": {
+        "module": "models.node.generator.file",
+        "type": "CSVFileArray",
+        "enable_log": true,
+        "file_path": [
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\A_antonio_events_part2.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\A_antonio_events_part3.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\A_antonio_events_part4.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\E_antonio_events_part2.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\E_antonio_events_part3.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\E_antonio_events_part4.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\I_antonio_events_part2.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\I_antonio_events_part3.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\I_antonio_events_part4.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\O_antonio_events_part2.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\O_antonio_events_part3.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\O_antonio_events_part4.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\U_antonio_events_part2.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\U_antonio_events_part3.csv",
+          "C:\\Users\\italo\\OneDrive\\Documentos\\GitHub\\OpenBCI_Python_Frameworkork\\cues\\coletas\\treino novo\\divididos\\U_antonio_events_part4.csv"
+        ],
+        "sampling_frequency": 250,
+        "channel_column_names": [
+          "marker"
+        ],
+        "buffer_options": {
+          "clear_output_buffer_on_generate": true,
+          "print_buffer_size": false
         },
-        "highpass": {
-          "module": "models.node.processing.filter",
-          "type": "HighPass",
-          "enable_log": true,
-          "buffer_options": {
-            "clear_output_buffer_on_data_input": true,
-            "clear_input_buffer_after_process": true,
-            "clear_output_buffer_after_process": true,
-            "print_buffer_size": false
-          },
-          "low_cut_frequency_hz": 30.0,
-          "order": 5,
-          "outputs": {
-            "main": [
-              {
-                "node": "notch",
-                "input": "main"
-              }
-            ]
-          }
-        },
-        "bandpass": {
-          "module": "models.node.processing.filter",
-          "type": "BandPass",
-          "enable_log": true,
-          "buffer_options": {
-            "clear_output_buffer_on_data_input": true,
-            "clear_input_buffer_after_process": true,
-            "clear_output_buffer_after_process": true,
-            "print_buffer_size": false
-          },
-          "low_cut_frequency_hz": 30.0,
-          "high_cut_frequency_hz": 120.0,
-          "order": 5,
-          "outputs": {
-            "main": [
-              {
-                "node": "notch",
-                "input": "main"
-              }
-            ]
-          }
-        },
-        "notch": {
-          "module": "models.node.processing.filter",
-          "type": "Notch",
-          "enable_log": true,
-          "buffer_options": {
-            "clear_output_buffer_on_data_input": true,
-            "clear_input_buffer_after_process": true,
-            "clear_output_buffer_after_process": true,
-            "print_buffer_size": false
-          },
-          "cut_frequency_hz": 60.0,
-          "Q": 30,
-          "outputs": {
-            "main": [
-              {
-                "node": "rectify",
-                "input": "main"
-              }
-            ]
-          }
-        },
-        "rectify": {
-          "module": "models.node.processing",
-          "type": "RectifySignal",
-          "enable_log": true,
-          "buffer_options": {
-            "clear_output_buffer_on_data_input": true,
-            "clear_input_buffer_after_process": true,
-            "clear_output_buffer_after_process": true,
-            "print_buffer_size": false
-          },
-          "outputs": {
-            "main": [
-              {
-                "node": "movingAverage",
-                "input": "main"
-              }
-            ]
-          }
-        },
-        "movingAverage": {
-          "module": "models.node.processing",
-          "type": "Smoothing",
-          "window_type": "exponential",
-          "window_size": 50,
-          "convolution_mode": "valid",
-          "enable_log": true,
-          "buffer_options": {
-            "clear_output_buffer_on_data_input": true,
-            "clear_input_buffer_after_process": true,
-            "clear_output_buffer_after_process": true,
-            "print_buffer_size": false
-          },
-          "outputs": {
-            "main": [
-              {
-                "node": "normalize",
-                "input": "main"
-              }
-            ]
-          }
-        },
-        "normalize": {
-          "module": "models.node.processing",
-          "type": "NormalizeSignal",
-          "enable_log": true,
-          "buffer_options": {
-            "clear_output_buffer_on_data_input": true,
-            "clear_input_buffer_after_process": true,
-            "clear_output_buffer_after_process": true,
-            "print_buffer_size": false
-          },
-          "outputs": {
-            "main": [
-              {
-                "node": "segmentation",
-                "input": "data"
-              }
-            ]
-          }
-        },
-        "segmentation": {
-          "module": "models.node.processing.segmenter",
-          "type": "LabelBasedFixedWindowSegmenter",
-          "enable_log": true,
-          "label_value": 0,
-          "filling_value": "zero",
-          "samples_after_label": 0,
-          "samples_before_label": 1250,
-          "buffer_options": {
-            "clear_output_buffer_on_data_input": false,
-            "clear_input_buffer_after_process": true,
-            "clear_output_buffer_after_process": true,
-            "print_buffer_size": false
-          },
-          "outputs": {
-            "data": [
-              {
-                "node": "feature_extraction",
-                "input": "features"
-              }
-            ],
-            "label": [
-              {
-                "node": "feature_extraction",
-                "input": "events"
-              }
-            ]
-          }
-        },
-        "feature_extraction": {
-          "module": "models.node.processing",
-          "type": "FeatureExtractionNode",
-          "enable_log": true,
-          "buffer_options": {
-            "clear_output_buffer_on_data_input": true,
-            "clear_input_buffer_after_process": true,
-            "clear_output_buffer_after_process": true,
-            "print_buffer_size": false
-          },
-          "sampling_frequency": 250,
-          "outputs": {
-            "features": [
-              {
-                "node": "lda",
-                "input": "data"
-              }
-            ],
-            "events": [
-              {
-                "node": "lda",
-                "input": "label"
-              }
-            ]
-          }
-        },
-        "lda": {
-          "module": "models.node.processing.trainable.classifier",
-          "type": "LDA",
-          "enable_log": true,
-          "buffer_options": {
-            "clear_output_buffer_on_data_input": true,
-            "clear_input_buffer_after_process": true,
-            "clear_output_buffer_after_process": true,
-            "clear_input_buffer_after_training": true,
-            "process_input_buffer_after_training": false,
-            "print_buffer_size": false
-          },
-          "training_set_size": 2,
-          "save_after_training": true,
-          "load_trained": false,
-          "save_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\LDA_emg.sav",
-          "load_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\LDA_emg.sav",
-          "outputs": {
-            "main": [],
-            "probability": [],
-            "training_finished": []
-          }
-        },
-        "logistic": {
-          "module": "models.node.processing.trainable.classifier",
-          "type": "logitregression",
-          "enable_log": true,
-          "buffer_options": {
-            "clear_output_buffer_on_data_input": true,
-            "clear_input_buffer_after_process": true,
-            "clear_output_buffer_after_process": true,
-            "clear_input_buffer_after_training": true,
-            "process_input_buffer_after_training": false,
-            "print_buffer_size": false
-          },
-          "training_set_size": 2,
-          "save_after_training": true,
-          "load_trained": false,
-          "save_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\LR_emg.sav",
-          "load_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\LR_emg.sav",
-          "outputs": {
-            "main": [],
-            "probability": [],
-            "training_finished": []
-          }
-        },
-        "svc": {
-          "module": "models.node.processing.trainable.classifier",
-          "type": "SVC",
-          "enable_log": true,
-          "buffer_options": {
-            "clear_output_buffer_on_data_input": true,
-            "clear_input_buffer_after_process": true,
-            "clear_output_buffer_after_process": true,
-            "clear_input_buffer_after_training": true,
-            "process_input_buffer_after_training": false,
-            "print_buffer_size": false
-          },
-          "training_set_size": 2,
-          "save_after_training": true,
-          "load_trained": false,
-          "save_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\SVC_emg.sav",
-          "load_file_path": "G:\\Meu Drive\\PDI\\UTFPR\\TCC\\Outputs\\SVC_emg.sav",
-          "outputs": {
-            "main": [],
-            "probability": [],
-            "training_finished": []
-          }
+        "outputs": {
+          "main": [
+            {
+              "node": "feature_extraction",
+              "input": "events"
+            }
+          ],
+          "timestamp": []
         }
+      }
+    },
+    "common": {
+      "lowpass": {
+        "module": "models.node.processing.filter",
+        "type": "LowPass",
+        "enable_log": true,
+        "buffer_options": {
+          "clear_output_buffer_on_data_input": true,
+          "clear_input_buffer_after_process": true,
+          "clear_output_buffer_after_process": true,
+          "print_buffer_size": false
+        },
+        "high_cut_frequency_hz": 120.0,
+        "order": 4,
+        "outputs": {
+          "main": [
+            {
+              "node": "highpass",
+              "input": "main"
+            }
+          ]
+        }
+      },
+      "highpass": {
+        "module": "models.node.processing.filter",
+        "type": "HighPass",
+        "enable_log": true,
+        "buffer_options": {
+          "clear_output_buffer_on_data_input": true,
+          "clear_input_buffer_after_process": true,
+          "clear_output_buffer_after_process": true,
+          "print_buffer_size": false
+        },
+        "low_cut_frequency_hz": 30.0,
+        "order": 2,
+        "outputs": {
+          "main": [
+            {
+              "node": "bandpass",
+              "input": "main"
+            }
+          ]
+        }
+      },
+      "bandpass": {
+        "module": "models.node.processing.filter",
+        "type": "BandPass",
+        "enable_log": true,
+        "buffer_options": {
+          "clear_output_buffer_on_data_input": true,
+          "clear_input_buffer_after_process": true,
+          "clear_output_buffer_after_process": true,
+          "print_buffer_size": false
+        },
+        "low_cut_frequency_hz": 30.0,
+        "high_cut_frequency_hz": 120.0,
+        "order": 3,
+        "outputs": {
+          "main": [
+            {
+              "node": "notch",
+              "input": "main"
+            }
+          ]
+        }
+      },
+      "notch": {
+        "module": "models.node.processing.filter",
+        "type": "Notch",
+        "enable_log": true,
+        "buffer_options": {
+          "clear_output_buffer_on_data_input": true,
+          "clear_input_buffer_after_process": true,
+          "clear_output_buffer_after_process": true,
+          "print_buffer_size": false
+        },
+        "cut_frequency_hz": 60.0,
+        "Q": 60,
+        "outputs": {
+          "main": [
+            {
+              "node": "normalize",
+              "input": "main"
+            }
+          ]
+        }
+      },
+      "rectify": {
+        "module": "models.node.processing",
+        "type": "RectifySignal",
+        "enable_log": true,
+        "buffer_options": {
+          "clear_output_buffer_on_data_input": true,
+          "clear_input_buffer_after_process": true,
+          "clear_output_buffer_after_process": true,
+          "print_buffer_size": false
+        },
+        "outputs": {
+          "main": [
+            {
+              "node": "movingAverage",
+              "input": "main"
+            }
+          ]
+        }
+      },
+      "movingAverage": {
+        "module": "models.node.processing",
+        "type": "Smoothing",
+        "window_type": "exponential",
+        "window_size": 50,
+        "convolution_mode": "same",
+        "enable_log": true,
+        "buffer_options": {
+          "clear_output_buffer_on_data_input": true,
+          "clear_input_buffer_after_process": true,
+          "clear_output_buffer_after_process": true,
+          "print_buffer_size": false
+        },
+        "outputs": {
+          "main": [
+            {
+              "node": "normalize",
+              "input": "main"
+            }
+          ]
+        }
+      },
+      "normalize": {
+        "module": "models.node.processing",
+        "type": "NormalizeSignal",
+        "enable_log": true,
+        "buffer_options": {
+          "clear_output_buffer_on_data_input": true,
+          "clear_input_buffer_after_process": true,
+          "clear_output_buffer_after_process": true,
+          "print_buffer_size": false
+        },
+        "outputs": {
+          "main": [
+            {
+              "node": "feature_extraction",
+              "input": "features"
+            },
+            {
+              "node": "csv_out",
+              "input": "main"
+            }
+          ]
+        }
+      },
+      "feature_extraction": {
+        "module": "models.node.processing",
+        "type": "FeatureExtractionNode",
+        "enable_log": true,
+        "buffer_options": {
+          "clear_output_buffer_on_data_input": true,
+          "clear_input_buffer_after_process": true,
+          "clear_output_buffer_after_process": true,
+          "print_buffer_size": false
+        },
+        "sampling_frequency": 250,
+        "outputs": {
+          "features": [
+            {
+              "node": "lda",
+              "input": "data"
+            },
+            {
+              "node": "saida_extractor_data",
+              "input": "main"
+            }
+          ],
+          "events": [
+            {
+              "node": "lda",
+              "input": "label"
+            },
+            {
+              "node": "saida_extractor_labels",
+              "input": "main"
+            }
+          ]
+        }
+      },
+      "lda": {
+        "module": "models.node.processing.trainable.classifier",
+        "type": "LDA",
+        "enable_log": true,
+        "buffer_options": {
+          "clear_output_buffer_on_data_input": true,
+          "clear_input_buffer_after_process": true,
+          "clear_output_buffer_after_process": true,
+          "clear_input_buffer_after_training": true,
+          "process_input_buffer_after_training": false,
+          "print_buffer_size": false
+        },
+        "training_set_size": 2,
+        "save_after_training": true,
+        "load_trained": false,
+        "save_file_path": "C:\\Users\\italo\\OneDrive\\Documentos\\TCC\\Classificadores\\LDA_emg.sav",
+        "load_file_path": "C:\\Users\\italo\\OneDrive\\Documentos\\TCC\\Classificadores\\LDA_emg.sav",
+        "outputs": {
+          "main": [],
+          "probability": [],
+          "training_finished": []
+        }
+      },
+      "qda": {
+        "module": "models.node.processing.trainable.classifier",
+        "type": "QDA",
+        "enable_log": true,
+        "buffer_options": {
+          "clear_output_buffer_on_data_input": true,
+          "clear_input_buffer_after_process": true,
+          "clear_output_buffer_after_process": true,
+          "clear_input_buffer_after_training": true,
+          "process_input_buffer_after_training": false,
+          "print_buffer_size": false
+        },
+        "training_set_size": 2,
+        "save_after_training": true,
+        "load_trained": false,
+        "save_file_path": "C:\\Users\\italo\\OneDrive\\Documentos\\TCC\\Classificadores\\QDA_emg.sav",
+        "load_file_path": "C:\\Users\\italo\\OneDrive\\Documentos\\TCC\\Classificadores\\QDA_emg.sav",
+        "outputs": {
+          "main": [],
+          "probability": [],
+          "training_finished": []
+        }
+      },
+      "csv_out": {
+        "module": "models.node.output.file",
+        "type": "CSVFile",
+        "enable_log": true,
+        "file_path": "C:\\Users\\italo\\OneDrive\\Documentos\\TCC\\Saídas divididose\\normalize.csv",
+        "buffer_options": {
+          "clear_output_buffer_on_data_input": false,
+          "clear_input_buffer_after_process": true,
+          "clear_output_buffer_after_process": true,
+          "print_buffer_size": false
+        },
+        "outputs": {}
+      },
+      "saida_extractor_data": {
+        "module": "models.node.output.file",
+        "type": "CSVFile",
+        "enable_log": true,
+        "file_path": "C:\\Users\\italo\\OneDrive\\Documentos\\TCC\\Saídas divididose\\saida_extractor_todos_data.csv",
+        "buffer_options": {
+          "clear_output_buffer_on_data_input": false,
+          "clear_input_buffer_after_process": true,
+          "clear_output_buffer_after_process": true,
+          "print_buffer_size": false
+        },
+        "outputs": {}
+      },
+      "saida_extractor_labels": {
+        "module": "models.node.output.file",
+        "type": "CSVFile",
+        "enable_log": true,
+        "file_path": "C:\\Users\\italo\\OneDrive\\Documentos\\TCC\\Saídas divididose\\saida_extractor_todos_events.csv",
+        "buffer_options": {
+          "clear_output_buffer_on_data_input": false,
+          "clear_input_buffer_after_process": true,
+          "clear_output_buffer_after_process": true,
+          "print_buffer_size": false
+        },
+        "outputs": {}
       }
     }
   }
+}

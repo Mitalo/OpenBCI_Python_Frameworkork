@@ -69,7 +69,7 @@ class OneHotToSingle(ProcessingNode):
         self.print('encoding...')
         raw_data = data[self.INPUT_MAIN]
         encoded_data: FrameworkData = FrameworkData(sampling_frequency_hz=raw_data.sampling_frequency)
-        encoded = np.argmax(raw_data.get_data_as_2d_array(), axis=0)
+        encoded = np.argmax(raw_data.get_data_as_2d_array(), axis=0)+1
         encoded_data.input_data_on_channel(encoded)
         self.print('encoded!')
         return {

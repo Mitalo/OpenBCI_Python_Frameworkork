@@ -90,14 +90,58 @@ class FeatureExtractionNode(ProcessingNode):
             self.OUTPUT_EVENTS: labels_data
         }
 
+    def calculate_ssc(self, signal):
+        threshold = 0.5
+        ssc_count = 0
+        for i in range(1, len(signal) - 1):
+            if ((signal[i] - signal[i-1]) * (signal[i] - signal[i+1]) > 0 and 
+                    abs(signal[i] - signal[i-1]) > threshold and 
+                    abs(signal[i] - signal[i+1]) > threshold):
+                ssc_count += 1
+        return ssc_count
+    
+    def calculate_zc(self, signal):
+        threshold = 0.5
+        zc_count = 0
+        for i in range(1, len(signal)):
+            # Verifica se houve mudança de sinal
+            if (signal[i-1] * signal[i] < 0 and 
+                    abs(signal[i] - signal[i-1]) > threshold):
+                zc_count += 1
+        return zc_count
+    
+    def calculate_myop(self, signal):
+        threshold = 0.5
+        N = len(signal)
+        P = np.abs(signal) >= threshold
+        myop = np.sum(P) / N
+        return myop
+
+    def calculate_dasdv(self, signal):
+        N = len(signal)
+        diff_signal = np.diff(signal)
+        dasdv = np.sqrt(np.sum(diff_signal**2) / (N - 1))
+        return dasdv
+    
+    def calculate_wamp(self, signal):
+        threshold = 0.5
+        N = len(signal)
+        wamp = np.sum(np.abs(signal[:-1])-np.abs(signal[1:]) > threshold)
+        return wamp
+    
+    def calculate_wl(self, signal):
+        wl = np.sum(np.abs(np.diff(signal)))
+        return wl
+
     def extract_features(self, signal):
         mav = np.mean(np.abs(signal))
-        zc = len(np.where(np.diff(np.sign(signal)))[0])
-        ssc = sum(np.sign(signal[i] - signal[i-1]) != np.sign(signal[i+1] - signal[i]) for i in range(1, len(signal)-1))
-        wl = np.sum(np.abs(np.diff(signal)))
+        zc = self.calculate_zc(signal) #len(np.where(np.diff(np.sign(signal)))[0])
+        ssc = self.calculate_ssc(signal) #sum(np.sign(signal[i] - signal[i-1]) != np.sign(signal[i+1] - signal[i]) for i in range(1, len(signal)-1))
+        wl = self.calculate_wl(signal)
         rms = np.sqrt(np.mean(np.square(signal)))
-        dasdv = np.sqrt(np.mean(np.square(np.abs(np.diff(signal)))))
-        # return [mav, wl, dasdv]
+        dasdv = self.calculate_dasdv(signal)
+        myop = self.calculate_myop(signal)
+        wamp = self.calculate_wamp(signal)
         return [mav, zc, ssc, wl]
 
     def _get_inputs(self) -> List[str]:
